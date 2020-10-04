@@ -1,0 +1,37 @@
+1. All users sorted by name:
+	
+	SELECT * 
+	FROM users
+	ORDER BY users.name 
+
+2. Users with age > 40:
+	
+	SELECT * 
+	FROM users
+	WHERE age > 40
+
+3. Users with age range between 20 and 40:
+	
+	SELECT * 
+	FROM users
+	WHERE age BETWEEN 20 AND 40
+
+4. Users with balance more than 1000:
+
+	SELECT user_id, SUM(balance)
+	FROM accounts
+	WHERE balance > 1000
+	GROUP BY user_id
+
+5. All transactions:
+
+	SELECT cashboxes.model, SUM(logs.amount) AS AllTransactions
+	FROM logs
+	LEFT JOIN cashboxes ON logs.cashbox_id = cashboxes.id
+	GROUP BY cashboxes.model
+
+6. Balance in cashboxes:
+
+	ELECT amounts.cashbox_id, SUM(amounts.value*amounts.quantity) AS Amount
+	FROM amounts
+	ROUP BY amounts.cashbox_id
